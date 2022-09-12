@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import ExpenseForm from "./ExpenseForm";
+import ExpenseForm, { ExpenseObj } from "./ExpenseForm";
 import "./NewExpense.css";
+import { Expense } from "../Expenses";
 
-const NewExpense = ({ onNewExpenseRender }) => {
+type PropExpense = (newExpense: Expense) => void;
+
+type PropType = {
+  onNewExpenseRender: PropExpense;
+};
+
+const NewExpense = ({ onNewExpenseRender }: PropType) => {
   const [displayExpenseForm, updateDisplayExpenseForm] = useState(false);
-  const onNewExpense = (expenseObj) => {
+  const onNewExpense = (expenseObj: ExpenseObj) => {
     const newExpense = {
       ...expenseObj,
       id: Math.random().toString(),
